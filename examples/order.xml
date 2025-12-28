@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<order id="ORD456">
+    <date>2024-01-15</date>
+    <customer>Alice Smith</customer>
+    <total>2199.98</total>
+    <items>
+        <item>
+            <productId>PROD001</productId>
+            <quantity>1</quantity>
+            <price>1299.99</price>
+        </item>
+        <item>
+            <productId>PROD002</productId>
+            <quantity>2</quantity>
+            <price>449.99</price>
+        </item>
+    </items>
+</order>

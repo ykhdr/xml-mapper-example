@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<product id="PROD001">
+    <title>Gaming Laptop</title>
+    <price>1299.99</price>
+    <category>Electronics</category>
+    <inStock>true</inStock>
+    <description>RTX 4060</description>
+</product>
