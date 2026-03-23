@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <order id="ORD456">
-    <date>2024-01-15</date>
+    <date>2024-01-15</date>  <!--   <date>2024-01-15T14:30</date> -->
     <customer>Alice Smith</customer>
     <total>2199.98</total>
     <items>

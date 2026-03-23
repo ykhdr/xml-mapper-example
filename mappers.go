@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/xml"
 	"fmt"
+	"time"
 )
 
 type Mapper interface {
@@ -28,13 +29,38 @@ type Product struct {
 	Description string   `xml:"description"`
 }
 
+type Date struct {
+	time.Time
+}
+
+func (d *Date) UnmarshalXML(dec *xml.Decoder, start xml.StartElement) error {
+	var s string
+	if err := dec.DecodeElement(&s, &start); err != nil {
+		return err
+	}
+	parsed, err := time.Parse("2006-01-02", s)
+	if err != nil {
+		return fmt.Errorf("failed to parse date %q: %v", s, err)
+	}
+	d.Time = parsed
+	return nil
+}
+
+func (d *Date) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return e.EncodeElement(d.Format("2006-01-02"), start)
+}
+
+func (d *Date) String() string {
+	return d.Format("2006-01-02")
+}
+
 type Order struct {
-	XMLName   xml.Name    `xml:"order"`
-	ID        string      `xml:"id,attr"`
-	Date      string      `xml:"date"`
-	Customer  string      `xml:"customer"`
-	Total     float64     `xml:"total"`
-	Items     []OrderItem `xml:"items>item"`
+	XMLName  xml.Name    `xml:"order"`
+	ID       string      `xml:"id,attr"`
+	Date     Date        `xml:"date"`
+	Customer string      `xml:"customer"`
+	Total    float64     `xml:"total"`
+	Items    []OrderItem `xml:"items>item"`
 }
 
 type OrderItem struct {
